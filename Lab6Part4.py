@@ -80,7 +80,18 @@ sns.relplot(data=data, x="Internet use", y="Life expectancy, female", col="Regio
 #In every region, the association between internet use and fife expectancy for women is linear.
 
 #6
-#a)
+#a)Is there any association between Internet use and emissions per capita?
 data['emissions per capita'] =(data['Greenhouse gas emissions'] / data['Population'])
 
 sns.relplot(data=data, x="Internet use", y="emissions per capita", hue="Region")
+# The association between Internet use and emissions per capita is linear.
+
+#b) Which are the countries with high emissions? (> 0.03)
+Filtered_emissions_data=  data[data['Greenhouse gas emissions']> 0.03]
+print(Filtered_emissions_data)
+for i in Filtered_emissions_data['Country Name']:  
+   print(i)
+   
+#c)Is there much variation by region (with respect to high emissions vs Internet use)?
+data["High emissions"]= Filtered_emissions_data
+sns.relplot(data=data, x="Internet use", y="High emissions", hue="Region")
