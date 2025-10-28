@@ -48,8 +48,39 @@ print(Filtered_women_data)
 
 for i in Filtered_women_data['Country Name']:  
    print(i)
-        
+    
+#1-2    
 sns.relplot(data=data, x="GNI per capita", y="Life expectancy, female", hue="Region")
 
+#3
 sns.relplot(data=data, x="GNI per capita", y="Life expectancy, female", hue="Region", kind= "line", errorbar="sd")
 
+#4
+sns.lmplot(data=data, x="GNI per capita", y="Life expectancy, female", hue="Region")
+
+#5
+#Is there any association between Physicians and Life expectancy, female?
+sns.relplot(data=data, x="Physicians", y="Life expectancy, female", size ="Population", col="Region")
+#In every region as the number of physicians increases, so does the life expectency for women (linear)
+
+#Is there any association between Tertiary education, female and Life expectancy, female?
+sns.relplot(data=data, x="Tertiary education, female", y="Life expectancy, female", col="Region")
+#In Asia, Africa and Oceania, as the tertiary education for female increases so does the life expectancy for women. However, in Europe and america, the life expectancy is constant
+
+#Is there any association between Women in natinal parliement and Life expectancy, female?
+sns.relplot(data=data, x="Women in national parliament", y="Life expectancy, female", col="Region")
+#In every region, there is no association between women in natinal parliement and life expectancy for womn.
+
+#Is there any association between Greenhouse gas emissions and Life expectancy, female?
+sns.relplot(data=data, x="Greenhouse gas emissions", y="Life expectancy, female", col="Region")
+#In every region, the greenhouse gas emisions are constant despite the fluctuation of women's life expectancy.
+
+#Is there any association between Internet use and Life expectancy, female?
+sns.relplot(data=data, x="Internet use", y="Life expectancy, female", col="Region")
+#In every region, the association between internet use and fife expectancy for women is linear.
+
+#6
+#a)
+data['emissions per capita'] =(data['Greenhouse gas emissions'] / data['Population'])
+
+sns.relplot(data=data, x="Internet use", y="emissions per capita", hue="Region")
