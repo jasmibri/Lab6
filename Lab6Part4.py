@@ -93,5 +93,11 @@ for i in Filtered_emissions_data['Country Name']:
    print(i)
    
 #c)Is there much variation by region (with respect to high emissions vs Internet use)?
-data["High emissions"]= Filtered_emissions_data
-sns.relplot(data=data, x="Internet use", y="High emissions", hue="Region")
+data["High emissions"]= data[data['Greenhouse gas emissions']> 0.03]
+sns.relplot(data=data, x= Filtered_emissions_data["Internet use"], y= Filtered_emissions_data["Greenhouse gas emissions"], hue="Region")
+
+#d) Do all high income economies have high emissions?
+Filtered_emissions_data=  data[data['Greenhouse gas emissions']> 0.03]
+print(Filtered_emissions_data)
+High_emissions_income= data[data['High Income Economy']==1]
+print(High_emissions_income)
