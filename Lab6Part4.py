@@ -97,7 +97,9 @@ data["High emissions"]= data[data['Greenhouse gas emissions']> 0.03]
 sns.relplot(data=data, x= Filtered_emissions_data["Internet use"], y= Filtered_emissions_data["Greenhouse gas emissions"], hue="Region")
 
 #d) Do all high income economies have high emissions?
-Filtered_emissions_data=  data[data['Greenhouse gas emissions']> 0.03]
-print(Filtered_emissions_data)
-High_emissions_income= data[data['High Income Economy']==1]
+High_income= data[data['High Income Economy']==1]
+print(High_income)
+High_emissions_income= data[(data['Greenhouse gas emissions']> 0.03) & (data['High Income Economy']==1)]
 print(High_emissions_income)
+#No because there are 67 countries with high income economies but only 61 countries with both high income economies and high greenhouse gas emissions.
+#Therefore, not all high income countries have high emissions
