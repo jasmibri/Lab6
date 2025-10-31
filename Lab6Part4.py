@@ -116,11 +116,16 @@ for i in Filtered_emissions_data['Country Name']:
    
 #c)Is there much variation by region (with respect to high emissions vs Internet use)?
 
-data.loc[data['Greenhouse gas emissions']> 0.03, 'High emissions']=data.loc[data["Greenhouse gas emissions"]> 0.03, "Greenhouse gas emissions"]
+data.loc[data['Greenhouse gas emissions']> 0.03,'High emissions']=data.loc[data["Greenhouse gas emissions"]> 0.03, "Greenhouse gas emissions"]
 
-
+#selecting desired values by locating the rows in Greenhouse gas emission column that are bigger than 0.03
+# the loc. function of pandas makes sure that the condidtion is satisfied, True
+# the the selected data are stored in a new colum named high emissions, again using the loc, function to locate it
 
 sns.relplot(data=data, x= "Internet use", y= "High emissions", hue="Region")
+
+#based on the generated graph, we can see a variation betweenthe variables. African countries tend to have a lower internet use 
+#with lower emissions, while Asian, European and American counties show relatively higher emisisons due to a more internet use.
 
 #d) Do all high income economies have high emissions?
 High_income= data[data['High Income Economy']==1]
