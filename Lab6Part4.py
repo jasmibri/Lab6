@@ -1,4 +1,6 @@
 # Team members: Anahita Niavarani and Jasmine Duong Brisebois
+#Part 3 (done in class)
+
 import pandas as pd
 import seaborn as sns
 
@@ -48,8 +50,27 @@ print(Filtered_women_data)
 
 for i in Filtered_women_data['Country Name']:  
    print(i)
-    
-#1-2    
+ 
+#Part 4
+
+# Question 1-4: Life expectancy, female
+   
+#1
+sns.relplot(data=data, x="GNI per capita", y="Life expectancy, male")
+
+#2    
+sns.relplot(data=data, x="GNI per capita", y="Life expectancy, male", hue="Region")
+
+#3 Linear plot with standard deviation 
+
+sns.relplot(data=data, x="GNI per capita", y="Life expectancy, male", hue="Region", kind= "line", errorbar="sd")
+
+#4 Generating a linear regression 
+sns.lmplot(data=data, x="GNI per capita", y="Life expectancy, male", hue="Region")
+
+
+# Question 1-4: Life expectancy, male
+
 sns.relplot(data=data, x="GNI per capita", y="Life expectancy, female", hue="Region")
 
 #3
@@ -57,6 +78,7 @@ sns.relplot(data=data, x="GNI per capita", y="Life expectancy, female", hue="Reg
 
 #4
 sns.lmplot(data=data, x="GNI per capita", y="Life expectancy, female", hue="Region")
+
 
 #5
 #Is there any association between Physicians and Life expectancy, female?
@@ -93,8 +115,12 @@ for i in Filtered_emissions_data['Country Name']:
    print(i)
    
 #c)Is there much variation by region (with respect to high emissions vs Internet use)?
-data["High emissions"]= data[data['Greenhouse gas emissions']> 0.03]
-sns.relplot(data=data, x= Filtered_emissions_data["Internet use"], y= Filtered_emissions_data["Greenhouse gas emissions"], hue="Region")
+
+data.loc[data['Greenhouse gas emissions']> 0.03, 'High emissions']=data.loc[data["Greenhouse gas emissions"]> 0.03, "Greenhouse gas emissions"]
+
+
+
+sns.relplot(data=data, x= "Internet use", y= "High emissions", hue="Region")
 
 #d) Do all high income economies have high emissions?
 High_income= data[data['High Income Economy']==1]
